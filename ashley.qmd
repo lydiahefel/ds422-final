@@ -1,0 +1,14 @@
+---
+title: "Coral Mapping"
+author: "Ashley Holen"
+format: html
+editor: visual
+---
+
+```{r}
+coral <- read.csv("/Users/ashleyholen/Desktop/Geocomputation/DS422-Geocomputation/Final Project/data/deep_sea_corals_3f74_0a89_9f82.csv")
+```
+
+```{r}
+head(coral)
+```
