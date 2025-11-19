@@ -6,9 +6,57 @@ editor: visual
 ---
 
 ```{r}
+#packages
+library(mapgl)
+library(sf)
+```
+
+```{r}
 coral <- read.csv("/Users/ashleyholen/Desktop/Geocomputation/DS422-Geocomputation/Final Project/data/deep_sea_corals_3f74_0a89_9f82.csv")
 ```
 
 ```{r}
 head(coral)
+```
+
+```{r}
+unique(coral['ScientificName'])
+```
+
+```{r}
+pearlharbor <- coral[coral$Locality == "Main Hawaiian Islands | Oahu Island, Pearl Harbor Defensive Sea Area", ]
+```
+
+```{r}
+unique(coral['VernacularNameCategory'])
+```
+
+```{r}
+octo <- coral[coral$ScientificName == "Octocorallia", ]
+```
+
+```{r}
+head(octo)
+```
+
+```{r}
+octo_sf <- st_as_sf(
+  octo,
+  coords = c("longitude..degrees_east.", "latitude..degrees_north."),   # <— long first, lat second
+  crs = 4326
+)
+```
+
+```{r}
+#map of octocoral
+
+hawaii_bounds <- c(-161.1, 18.85, -154.8, 22.25)
+
+mapboxgl(bounds = hawaii_bounds) |>
+  add_circle_layer(
+    id = "octo_points",
+    source = octo_sf,
+    circle_color = "purple",
+    circle_radius = 5
+  )
 ```
