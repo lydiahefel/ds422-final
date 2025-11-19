@@ -1,26 +1,28 @@
 ---
-title: "coral_reef_lydia"
+title: "DS 422 Final Project"
 format: html
 editor: visual
 ---
 
-## Quarto
+## *Octocorallia* in Hawai'i before spreading to Pearl Harbor
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Libraries
 
 ```{r}
-1 + 1
+library(here)
+library(tidyverse)
 ```
 
-You can add options to executable code like this
+## Data
 
 ```{r}
-#| echo: false
-2 * 2
+data <- read_csv(here("data", "deep_sea_corals_43c0_dd36_9375.csv"))
+
+octo_data <- subset(data, ScientificName == "Octocorallia")
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Data Viz
+
+```{r}
+
+```
