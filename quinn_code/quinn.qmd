@@ -99,4 +99,72 @@ ggplotly(p) %>%
 ```
 
 
+# barcharts - all species
+```{r}
+data_years <- data %>%
+  mutate(
+    year = as.numeric(format(ObservationDate, "%Y"))
+  ) %>%
+  filter(!is.na(year))
+```
+
+
+```{r}
+ggplot(data_years, aes(x = year)) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "Number of Coral Observations per Year",
+    x = "Year",
+    y = "Number of Observations"
+  )
+```
+```{r}
+ggplot() +
+  geom_polygon(
+    data = world,
+    aes(x = long, y = lat, group = group),
+    fill = "gray90",
+    color = "gray50",
+    linewidth = 0.2
+  ) +
+  geom_point(
+    data = data_years,
+    aes(
+      x = `longitude (degrees_east)`,
+      y = `latitude (degrees_north)`,
+      color = year
+    ),
+    alpha = 0.6
+  ) +
+  scale_color_viridis_c() +
+  theme_minimal() +
+  labs(
+    title = "Spatial Distribution of Coral Observations Over Time",
+    x = "Longitude",
+    y = "Latitude",
+    color = "Year"
+  ) +
+  coord_fixed(1.3,
+              xlim = range(data_octocorallia$`longitude (degrees_east)`) + c(-1,1),
+              ylim = range(data_octocorallia$`latitude (degrees_north)`) + c(-1,1)
+  )
+
+```
+
+```{r}
+data_years %>%
+  group_by(year) %>%
+  summarise(species_richness = n_distinct(ScientificName)) %>%
+  ggplot(aes(x = year, y = species_richness)) +
+  geom_line(color = "purple") +
+  geom_point(color = "purple") +
+  theme_minimal() +
+  labs(
+    title = "Number of Unique Coral Species Observed per Year",
+    x = "Year",
+    y = "Species Count"
+  )
+```
+
 
