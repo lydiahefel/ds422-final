@@ -9,10 +9,13 @@ editor: visual
 #packages
 library(mapgl)
 library(sf)
+library(here)
+library(RColorBrewer)
+library(leaflet)
 ```
 
 ```{r}
-coral <- read.csv("/Users/ashleyholen/Desktop/Geocomputation/DS422-Geocomputation/Final Project/data/deep_sea_corals_3f74_0a89_9f82.csv")
+coral <- read.csv(here('data/deep_sea_corals_43c0_dd36_9375.csv'))
 ```
 
 ```{r}
@@ -32,7 +35,7 @@ unique(coral['VernacularNameCategory'])
 ```
 
 ```{r}
-octo <- coral[coral$ScientificName == "Octocorallia", ]
+octo <- subset(coral, ScientificName == "Octocorallia")
 ```
 
 ```{r}
@@ -58,5 +61,41 @@ mapboxgl(bounds = hawaii_bounds) |>
     source = octo_sf,
     circle_color = "purple",
     circle_radius = 5
+  )
+```
+
+```{r}
+#map of all hawaii coral by scientific name
+
+coral_sf <- st_as_sf(
+  coral,
+  coords = c("longitude..degrees_east.", "latitude..degrees_north."),   # <— long first, lat second
+  crs = 4326
+)
+```
+
+```{r}
+hawaii_bounds <- c(-161.1, 18.85, -154.8, 22.25)
+
+# palette based on species
+pal <- colorFactor("Set2", coral_sf$VernacularNameCategory)
+
+leaflet(coral_sf) |>
+  addTiles() |>
+  fitBounds(lng1 = hawaii_bounds[1],
+            lat1 = hawaii_bounds[2],
+            lng2 = hawaii_bounds[3],
+            lat2 = hawaii_bounds[4]) |>
+  addCircleMarkers(
+    radius = 4,
+    stroke = FALSE,
+    fillOpacity = 0.9,
+    color = ~pal(VernacularNameCategory)
+  ) |>
+  addLegend(
+    pal = pal,
+    values = ~VernacularNameCategory,
+    title = "Coral Species",
+    opacity = 1
   )
 ```
