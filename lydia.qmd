@@ -9,20 +9,87 @@ editor: visual
 ## Libraries
 
 ```{r}
+library(sf)
 library(here)
+library(readr)
+library(janitor)
+library(mapview)
+library(leaflet)
 library(tidyverse)
+library(RColorBrewer)
 ```
 
 ## Data
 
 ```{r}
-data <- read_csv(here("data", "deep_sea_corals_43c0_dd36_9375.csv"))
+data <- here("data", "deep_sea_corals_43c0_dd36_9375.csv") %>%
+  read_csv() %>%
+  clean_names()
 
-octo_data <- subset(data, ScientificName == "Octocorallia")
+octo_data <- subset(data, scientific_name == "Octocorallia") %>% 
+  mutate(observation_year = year(observation_date), observation_year = as.factor(observation_year)) 
+
+octo_sf <- st_as_sf(
+  octo_data,
+  coords = c("longitude_degrees_east", "latitude_degrees_north"),   # <— long first, lat second
+  crs = 4326
+)
 ```
 
-## Data Viz
+## Map Box
 
 ```{r}
+hawaii_bounds <- c(-161.1, 18.85, -154.8, 22.25)
 
+mapboxgl(bounds = hawaii_bounds) %>%
+  add_circle_layer(
+    id = "octo_points",
+    source = octo_sf,
+    circle_color = "purple",
+    circle_radius = 5,
+  )
+    
+```
+
+## Map View
+
+```{r}
+octo_sf <- st_as_sf(
+  octo_data,
+  coords = c("longitude_degrees_east", "latitude_degrees_north"),   # <— long first, lat second
+  crs = 4326
+)
+
+mapview(octo_sf, zcol = "observation_year", alpha = 0.5, legend = TRUE, layer.name = "Octocoral Observation Year")
+```
+
+## Leaflet Map
+
+```{r}
+pal <- colorFactor(
+  palette = brewer.pal(n = length(unique(octo_sf$observation_year)), name = "Set2"),
+  domain = octo_sf$observation_year
+)
+
+
+leaflet(octo_sf) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    color = ~pal(observation_year), 
+    radius = 5,
+    fillOpacity = 0.5,
+    stroke = FALSE,
+    popup = ~paste(
+      "<b>Year:</b>", observation_year, "<br>",
+      "<b>Date:</b>", observation_date, "<br>",
+      "<b>Species:</b>", scientific_name, "<br>",
+      "<b>Depth:</b>", depth_in_meters_m
+    )
+  ) %>%
+  addLegend(
+    "bottomright",
+    pal = pal,
+    values = ~observation_year,
+    title = "Observation Year"
+  )
 ```
