@@ -18,6 +18,11 @@ Hello! I am a senior at Chaminade University of Honolulu majoring in data scienc
 
 **Quinn McHenry**
 
+<img src="https://github.com/lydiahefel/ds422-final/edit/main/quinn_code/IMG_6418.HEIC"
+width="200">
+
+I am a senior Computer Science major at Chaminade University with a minor in Data Science and a Mathematics specialization. I graduate this Decembeer and plan on pursuing my Masters in CS.
+
 **Lydia Hefel**
 
 <img src="https://github.com/user-attachments/assets/2a1ec3ad-d236-4f1f-b508-0f821b4d3b25" width="200" />
