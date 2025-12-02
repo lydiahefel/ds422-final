@@ -14,6 +14,8 @@ As mentioned, the data used for our data visualizations and analysis was accesse
 
 Hello! I am a senior at Chaminade University of Honolulu majoring in data science and computer science with a minor in mathematics. I am also a member of the women's basketball team. I am graduating spring 2026. 
 
+[Connect with me!](https://www.linkedin.com/in/ashleyholen/)
+
 **Quinn McHenry**
 
 **Lydia Hefel**
