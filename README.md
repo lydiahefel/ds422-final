@@ -16,6 +16,7 @@ As mentioned, the data used for our data visualizations and analysis was accesse
 
 <img src="https://github.com/user-attachments/assets/2a1ec3ad-d236-4f1f-b508-0f821b4d3b25" width="200" />
 
+
 Hi! I'm an undergraduate student at Chaminade University of Honolulu. I'm a data science and computer science double major with a minor in mathematics. I will be graduating this spring!
 
 [Connect with me!](https://www.linkedin.com/in/lydia-hefel-70516b347/)
