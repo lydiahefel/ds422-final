@@ -18,7 +18,8 @@ Hello! I am a senior at Chaminade University of Honolulu majoring in data scienc
 
 **Quinn McHenry**
 
-![pic](quinn_code/IMG_6418.png)
+<img src="quinn_code/IMG_6418.png"
+width="200" />
 
 I am a senior Computer Science major at Chaminade University with a minor in Data Science and a Mathematics specialization. I graduate this Decembeer and plan on pursuing my Masters in CS.
 
