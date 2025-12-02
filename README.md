@@ -13,7 +13,8 @@ As mentioned, the data used for our data visualizations and analysis was accesse
 **Quinn McHenry**
 
 **Lydia Hefel**
-![headshot](https://github.com/user-attachments/assets/37fcca40-be82-4bf4-b27c-87b370b1b704)
+![headshot](https://github.com/user-attachments/assets/2a1ec3ad-d236-4f1f-b508-0f821b4d3b25)
+
 
 Hi! I'm an undergraduate student at Chaminade University of Honolulu. I'm a data science and computer science double major with a minor in mathematics. I will be graduating this spring!
 
