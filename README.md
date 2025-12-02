@@ -10,6 +10,10 @@ As mentioned, the data used for our data visualizations and analysis was accesse
 ## Meet the team!
 **Ashley Holen**
 
+![IMG_8549](https://github.com/user-attachments/assets/a42eeb34-77ec-4cf7-8072-c1f0bef4845b)
+
+Hello! I am a senior at Chaminade University of Honolulu majoring in data science and computer science with a minor in mathematics. I am also a member of the women's basketball team. I am graduating spring 2026. 
+
 **Quinn McHenry**
 
 **Lydia Hefel**
